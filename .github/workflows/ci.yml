@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Show GITHUB_ACTIONS env variable
-        run: echo "GITHUB_ACTIONS=${GITHUB_ACTIONS}"
+        run: echo "GITHUB_ACTIONS=${{ env.GITHUB_ACTIONS }}"
 
       - name: Show branch and repository
         run: |
@@ -23,4 +23,4 @@ jobs:
           echo "Ref name: ${{ github.ref_name }}"
 
       - name: Show triggering event
-        run: echo "Event name: ${EVENT_NAME}"
+        run: echo "Event name: ${{ env.EVENT_NAME }}"
