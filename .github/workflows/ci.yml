@@ -1,4 +1,7 @@
-name: PR Workflow - ${{ github.actor }}
+name: PR Workflow
+
+# Назва запуску workflow з іменем користувача
+run-name: PR Workflow - ${{ github.actor }}
 
 # Активація при створенні pull request
 on:
