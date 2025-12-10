@@ -1,26 +1,31 @@
-name: "github-actions-${{ github.actor }}"
+name: "PR Workflow"
+
+run-name: "PR Workflow - ${{ github.actor }}"
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened]
 
 env:
-  GITHUB_ACTIONS: "custom-github-actions-env"
-  EVENT_NAME: ${{ github.event_name }}
+  GITHUB_ACTIONS: true
 
 jobs:
   github-task-job:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Show GITHUB_ACTIONS env variable
-        run: echo "GITHUB_ACTIONS=${GITHUB_ACTIONS}"
-
-      - name: Show branch and repository
+      - name: Display GITHUB_ACTIONS environment variable
+        run: |
+          echo "GITHUB_ACTIONS variable value: $GITHUB_ACTIONS"
+      
+      - name: Display branch and repository name
         run: |
           echo "Repository: ${{ github.repository }}"
-          echo "Head ref (PR branch): ${{ github.head_ref }}"
-          echo "Base ref (target branch): ${{ github.base_ref }}"
-          echo "Ref name: ${{ github.ref_name }}"
-
-      - name: Show triggering event
-        run: echo "Event name: ${EVENT_NAME}"
+          echo "Branch: ${{ github.head_ref }}"
+          echo "Base branch: ${{ github.base_ref }}"
+      
+      - name: Display triggering event
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Action: ${{ github.event.action }}"
+          echo "Triggered by: ${{ github.actor }}"
